@@ -5,13 +5,6 @@
     tools:context=".TodoListManagerActivity" 
     android:orientation="vertical" >
 
-	<EditText
-    	android:id="@+id/edtNewItem"
-    	android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_text_hint"
-    	/>
-	
 	<ListView
 	    android:id="@+id/lstTodoItems"
     	android:layout_width="wrap_content"

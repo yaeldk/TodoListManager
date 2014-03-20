@@ -3,9 +3,13 @@
 
     <string name="app_name">TodoListManager</string>
     <string name="action_add_item">Add</string>
-    <string name="edit_text_hint">Enter item here</string>
+    <string name="edit_text_default">Enter item here</string>
     <string name="edit_text_title">Enter item here</string>
-    <string name="delete_title"> will be deleted</string>
+    <string name="delete">Delete Item</string>
+    <string name="no_due_date">No due date</string>
+    <string name="Cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="add_new_item_title">Add new item</string>
+
 
 </resources>
