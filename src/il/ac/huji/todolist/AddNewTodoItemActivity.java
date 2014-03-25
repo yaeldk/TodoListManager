@@ -29,17 +29,24 @@ public class AddNewTodoItemActivity extends Activity {
 		int year = datePicker.getYear();
 		int month = datePicker.getMonth();
 		int day = datePicker.getDayOfMonth();
-		
+		GregorianCalendar date = new GregorianCalendar( year, month, day );
+    			
 		
 		Intent intent = new Intent(this, TodoListManagerActivity.class); 
-		intent.putExtra("Text", textEntered); 
-		intent.putExtra("Year", String.valueOf(year));
-		intent.putExtra("Month", String.valueOf(month));
-		intent.putExtra("Day", String.valueOf(day));
+		intent.putExtra("title", textEntered); 
+		intent.putExtra("dueDate", date.getTimeInMillis());
 		
 		setResult(RESULT_OK, intent); 
 		finish(); 
 
+	}
+	
+	public void cancel ( View view )
+	{
+		Intent intent = new Intent(this, TodoListManagerActivity.class); 
+				
+		setResult(RESULT_CANCELED, intent); 
+		finish(); 
 	}
 
 }
