@@ -169,7 +169,17 @@ public class TodoListManagerActivity extends Activity {
 				String t = ((RedBlueAdapter) adapterView.getAdapter())
 						.getItemText(index);
 				builder.setTitle(t);
-				final CharSequence dItems[] = { getString(R.string.delete), t };
+
+				CharSequence dItems[] = null;
+				dItems[0] = getString(R.string.delete);
+				
+				if (t.indexOf("Call ") == 0) 
+				{
+				
+					dItems[1] = t ;
+	
+				}
+				
 				builder.setItems(dItems, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int dItem) {
 						// User clicked a delete item
@@ -194,34 +204,11 @@ public class TodoListManagerActivity extends Activity {
 							
 							
 							
-						} else {
+						} 
+						else 
+						{
 							if (dItem == 1) {
-								if (items.get(selectedIndex).getText()
-										.indexOf("Call ") == 0) {
-									final CharSequence d2Items[] = {
-											getString(R.string.delete),
-											items.get(selectedIndex).getText(),
-											items.get(selectedIndex).getText() };
-
-									builder.setItems(
-											d2Items,
-											new DialogInterface.OnClickListener() {
-												public void onClick(
-														DialogInterface dialog,
-														int dItem) {
-													// User clicked an item
-													if (dItem == 0) {
-														items.remove(selectedIndex);
-														adapter.notifyDataSetChanged();
-													} else {
-														if (dItem == 1) {
-
-														}
-													}
-
-												}
-											});
-								}
+								
 							}
 						}
 
