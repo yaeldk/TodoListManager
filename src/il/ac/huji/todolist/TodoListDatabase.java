@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class TodoListDatabase 
 {
@@ -44,6 +45,8 @@ public class TodoListDatabase
 	    cursor.moveToFirst();
 	    Item newItem = cursorToItem(cursor);
 	    cursor.close();
+	    
+		
 	    return newItem;
 	  }
 
@@ -54,25 +57,34 @@ public class TodoListDatabase
 	    database.delete(TodoListSQLiteHelper.TABLE_TODO, TodoListSQLiteHelper.COLUMN_ID
 	        + " = " + id, null);
 	  }
+	  
+	  public Cursor getCursor ()
+	  {
+		  return database.query(TodoListSQLiteHelper.TABLE_TODO,
+				  allColumns, null, null, null, null, null);
+	  }
+	  
+	  // UNUSED since v4
+	  public ArrayList<Item> getAllItems() 
+	  {
+		  ArrayList<Item> items = new ArrayList<Item>();
 
-	  public ArrayList<Item> getAllItems() {
-	    ArrayList<Item> items = new ArrayList<Item>();
+		  Cursor cursor = database.query(TodoListSQLiteHelper.TABLE_TODO,
+				  allColumns, null, null, null, null, null);
 
-	    Cursor cursor = database.query(TodoListSQLiteHelper.TABLE_TODO,
-	        allColumns, null, null, null, null, null);
-
-	    cursor.moveToFirst();
-	    while (!cursor.isAfterLast()) {
-	      Item item = cursorToItem(cursor);
-	      items.add(item);
-	      cursor.moveToNext();
-	    }
-	    // make sure to close the cursor
-	    cursor.close();
-	    return items;
+		  cursor.moveToFirst();
+		  while (!cursor.isAfterLast()) 
+		  {
+			  Item item = cursorToItem(cursor);
+			  items.add(item);
+			  cursor.moveToNext();
+		  }
+		  // make sure to close the cursor
+		  cursor.close();
+		  return items;
 	  }
 
-	  private Item cursorToItem(Cursor cursor) {
+	  public Item cursorToItem(Cursor cursor) {
 	    Item item = new Item((int) cursor.getLong(0), cursor.getString(1), cursor.getLong(2));
 	    return item;
 	  }

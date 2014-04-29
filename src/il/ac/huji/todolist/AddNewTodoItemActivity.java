@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -30,11 +31,11 @@ public class AddNewTodoItemActivity extends Activity {
 		int month = datePicker.getMonth();
 		int day = datePicker.getDayOfMonth();
 		GregorianCalendar date = new GregorianCalendar( year, month, day );
-    			
 		
 		Intent intent = new Intent(this, TodoListManagerActivity.class); 
 		intent.putExtra("title", textEntered); 
 		intent.putExtra("dueDate", date.getTimeInMillis());
+	
 		
 		setResult(RESULT_OK, intent); 
 		finish(); 
